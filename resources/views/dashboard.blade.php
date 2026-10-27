@@ -40,6 +40,11 @@
                 Ver las 10 razones de mi amor 🎁
             </a>
 
+            <a href="{{ route('gift.map') }}"
+            class="block w-full bg-rose-100 hover:bg-rose-200 text-rose-700 font-bold py-3.5 px-6 rounded-2xl shadow transition text-center mb-3">
+                🗺️ Ver nuestros lugares especiales
+            </a>
+
             <a href="{{ route('gift') }}"
                class="block w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-semibold py-2.5 px-6 rounded-xl text-xs transition">
                 🔒 Bloquear y salir

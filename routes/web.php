@@ -7,3 +7,4 @@ Route::get('/', [GiftController::class, 'index'])->name('gift');
 Route::post('/login', [GiftController::class, 'verify'])->name('login.verify');
 Route::get('/inicio', [GiftController::class, 'dashboard'])->name('dashboard');
 Route::get('/regalo', [GiftController::class, 'board'])->name('gift.board');
+Route::get('/lugares', [GiftController::class, 'map'])->name('gift.map');

@@ -78,4 +78,14 @@ class GiftController extends Controller
 
         return view('gift', compact('reasons', 'years', 'months', 'days'));
     }
+    public function map(Request $request)
+    {
+        if (!$request->session()->get('authenticated')) {
+            return redirect()->route('gift');
+        }
+
+        $places = config('places.list');
+
+        return view('map', compact('places'));
+    }
 }
