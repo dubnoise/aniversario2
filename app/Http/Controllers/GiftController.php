@@ -88,4 +88,12 @@ class GiftController extends Controller
 
         return view('map', compact('places'));
     }
+    public function safe(Request $request)
+    {
+        if (!$request->session()->get('authenticated')) {
+            return redirect()->route('gift');
+        }
+
+        return view('safe');
+    }
 }
