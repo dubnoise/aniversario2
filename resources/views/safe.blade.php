@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Caja Fuerte Secreta 🔐</title>
+    <title>La Caja Fuerte 🔐</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
@@ -62,7 +62,7 @@
 
     <!-- Header -->
     <header class="bg-black/40 backdrop-blur-md py-4 px-6 flex justify-between items-center border-b border-purple-900/50 relative z-10">
-        <h1 class="text-xl md:text-2xl font-extrabold text-purple-300">🔐 La Caja Fuerte Secreta</h1>
+        <h1 class="text-xl md:text-2xl font-extrabold text-purple-300">🔐 La Caja Fuerte</h1>
         <a href="{{ route('dashboard') }}" class="text-xs bg-purple-900/60 hover:bg-purple-800 text-purple-200 font-semibold px-4 py-2 rounded-full transition border border-purple-700/50">
             ← Volver al inicio
         </a>

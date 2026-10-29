@@ -47,7 +47,7 @@
 
             <a href="{{ route('gift.safe') }}"
             class="block w-full bg-purple-950/60 hover:bg-purple-900 border border-purple-700/50 text-purple-200 font-bold py-3.5 px-6 rounded-2xl shadow transition text-center mb-3">
-                🔐 Abrir la caja fuerte secreta
+                🔐 Abrir la caja fuerte
             </a>
 
             <a href="{{ route('gift') }}"

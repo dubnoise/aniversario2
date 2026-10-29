@@ -59,7 +59,7 @@
 
     <!-- Header -->
     <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center border-b border-rose-200 relative z-10">
-        <h1 class="text-xl md:text-2xl font-extrabold text-rose-600">🗺️ Nuestros Lugares Especiales</h1>
+        <h1 class="text-xl md:text-2xl font-extrabold text-rose-600">🗺️ Nuestros Lugares</h1>
         <a href="{{ route('dashboard') }}" class="text-xs bg-rose-100 text-rose-600 font-semibold px-4 py-2 rounded-full hover:bg-rose-200 transition">
             ← Volver al inicio
         </a>
@@ -85,26 +85,32 @@
             <h3 class="text-2xl font-extrabold text-rose-600 mb-1 text-center pr-10 pl-4" x-text="activePlace ? activePlace.title : ''"></h3>
             <p class="text-gray-500 text-xs mb-4 text-center px-4" x-text="activePlace ? activePlace.description : ''"></p>
 
-            <!-- Visor Principal con animación Fade In -->
-            <div class="relative w-full h-[380px] sm:h-[450px] bg-black/90 rounded-2xl overflow-hidden flex items-center justify-center mb-4 border border-rose-100 shadow-inner group">
+            <!-- Visor Principal -->
+            <div class="relative w-full h-[380px] sm:h-[450px] bg-black/90 rounded-2xl overflow-hidden flex items-center justify-center mb-4 border border-rose-100 shadow-inner group cursor-pointer"
+                 @click="fullscreen = true">
+
                 <template x-if="activePlace && activePlace.media.length > 0">
-                    <div class="w-full h-full flex items-center justify-center cursor-pointer transition-opacity duration-300 ease-in-out"
-                         :class="{ 'opacity-0': isFading, 'opacity-100': !isFading }"
-                         @click="fullscreen = true">
+                    <div class="w-full h-full flex items-center justify-center">
                         <template x-if="activePlace.media[currentIndex].type === 'image'">
                             <img :src="'{{ asset('') }}' + activePlace.media[currentIndex].url"
-                                 class="max-h-full max-w-full object-contain transition transform group-hover:scale-105 duration-300">
+                                 class="max-h-full max-w-full object-contain transition-opacity duration-300 ease-in-out transform group-hover:scale-105"
+                                 :class="{ 'opacity-0': isFading, 'opacity-100': !isFading }">
                         </template>
                         <template x-if="activePlace.media[currentIndex].type === 'video'">
-                            <video :src="'{{ asset('') }}' + activePlace.media[currentIndex].url" controls class="max-h-full max-w-full object-contain"></video>
+                            <video :src="'{{ asset('') }}' + activePlace.media[currentIndex].url" controls
+                                   class="max-h-full max-w-full object-contain transition-opacity duration-300 ease-in-out"
+                                   :class="{ 'opacity-0': isFading, 'opacity-100': !isFading }"></video>
                         </template>
-                        <div x-show="activePlace.media.length > 0 && activePlace.media[currentIndex].type === 'image'"
-                             class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 opacity-90 group-hover:opacity-100 group-hover:bg-rose-600 transition">
-                            <span>🔍</span> <span>Toca para ver más grande</span>
-                        </div>
                     </div>
                 </template>
 
+                <!-- Indicador flotante -->
+                <div x-show="activePlace && activePlace.media.length > 0 && activePlace.media[currentIndex].type === 'image'"
+                     class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 opacity-90 group-hover:opacity-100 group-hover:bg-rose-600 transition pointer-events-none">
+                    <span>🔍</span> <span>Toca para ver más grande</span>
+                </div>
+
+                <!-- Botones Flecha Anterior / Siguiente -->
                 <template x-if="activePlace && activePlace.media.length > 1">
                     <div class="absolute inset-0 flex justify-between items-center px-3 pointer-events-none">
                         <button @click.stop="prevMedia()" class="pointer-events-auto bg-white/80 hover:bg-white text-rose-600 w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-lg font-bold transition transform hover:scale-110">❮</button>
@@ -115,9 +121,10 @@
 
             <div class="text-xs font-bold text-rose-500 mb-3" x-text="activePlace ? (currentIndex + 1 + ' de ' + activePlace.media.length) : ''"></div>
 
-            <div class="flex gap-2.5 overflow-x-auto max-w-full pb-2 px-1 w-full justify-center">
+            <!-- Miniaturas con desplazamiento automático al inicio -->
+            <div id="thumbnails-container" class="flex gap-2.5 overflow-x-auto max-w-full pb-2 px-1 w-full justify-start scroll-smooth">
                 <template x-for="(media, index) in (activePlace ? activePlace.media : [])">
-                    <button @click="changeMedia(index)"
+                    <button @click="changeMedia(index); $el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });"
                             class="w-16 h-16 rounded-xl overflow-hidden border-2 transition transform hover:scale-105 flex-shrink-0 relative shadow-sm"
                             :class="currentIndex === index ? 'border-rose-500 scale-105 ring-2 ring-rose-300' : 'border-gray-200 opacity-60'">
                         <template x-if="media.type === 'image'">
@@ -154,16 +161,18 @@
 
         <div class="relative w-full flex-grow flex items-center justify-center overflow-hidden my-4">
             <template x-if="activePlace && activePlace.media.length > 0">
-                <div class="w-full h-full flex items-center justify-center transition-opacity duration-300 ease-in-out"
-                     :class="{ 'opacity-0': isFading, 'opacity-100': !isFading }">
+                <div class="w-full h-full flex items-center justify-center">
                     <template x-if="activePlace.media[currentIndex].type === 'image'">
                         <img :src="'{{ asset('') }}' + activePlace.media[currentIndex].url"
-                             class="max-h-[85vh] max-w-[90vw] object-contain transition-transform duration-200 select-none shadow-2xl rounded-lg"
+                             class="max-h-[85vh] max-w-[90vw] object-contain transition-all duration-300 ease-in-out select-none shadow-2xl rounded-lg"
+                             :class="{ 'opacity-0': isFading, 'opacity-100': !isFading }"
                              :style="'transform: scale(' + zoomScale + '); cursor: ' + (zoomScale > 1 ? 'grab' : 'zoom-in')"
                              @click="if(zoomScale === 1) zoomIn(); else resetZoom();">
                     </template>
                     <template x-if="activePlace.media[currentIndex].type === 'video'">
-                        <video :src="'{{ asset('') }}' + activePlace.media[currentIndex].url" controls class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg"></video>
+                        <video :src="'{{ asset('') }}' + activePlace.media[currentIndex].url" controls
+                               class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg transition-opacity duration-300 ease-in-out"
+                               :class="{ 'opacity-0': isFading, 'opacity-100': !isFading }"></video>
                     </template>
                 </div>
             </template>
@@ -192,36 +201,15 @@
         </div>
     </div>
 
-<!-- 🎵 Reproductor de Música con Fade In -->
-    <div x-data="{
+<!-- 🎵 REPRODUCTOR DE MÚSICA CONTINUO (Con Fade In automático) -->
+    <div x-show="!fullscreen"
+         style="display: none;"
+         x-data="{
             isPlaying: false,
             audio: null,
-            fadeInAudio() {
-                this.audio.volume = 0; // Empezamos en silencio absoluto
-                this.audio.play().then(() => {
-                    this.isPlaying = true;
-                    localStorage.setItem('music_is_playing', 'true');
-
-                    // Efecto Fade In gradual (sube el volumen poco a poco)
-                    let targetVolume = 0.07; // Volumen máximo deseado
-                    let step = 0.001;        // Cantidad que sube en cada paso
-                    let intervalTime = 100; // Velocidad del incremento (milisegundos)
-
-                    let fadeInterval = setInterval(() => {
-                        if (this.audio.volume < targetVolume - step) {
-                            this.audio.volume += step;
-                        } else {
-                            this.audio.volume = targetVolume; // Fijamos el tope exacto
-                            clearInterval(fadeInterval);
-                        }
-                    }, intervalTime);
-
-                }).catch(e => {
-                    this.isPlaying = false;
-                });
-            },
             init() {
                 this.audio = document.getElementById('bg-music');
+                this.audio.volume = 0.0; // Empezamos en silencio para el fade in
 
                 let savedTime = localStorage.getItem('music_current_time');
                 let wasPlaying = localStorage.getItem('music_is_playing') === 'true';
@@ -231,15 +219,38 @@
                 }
 
                 if (wasPlaying) {
-                    this.fadeInAudio();
+                    this.audio.addEventListener('canplay', () => {
+                        if (savedTime) this.audio.currentTime = parseFloat(savedTime);
+                    }, { once: true });
+
+                    this.audio.play().then(() => {
+                        this.isPlaying = true;
+                        this.fadeInAudio();
+                    }).catch(e => {
+                        this.isPlaying = false;
+                    });
                 }
 
-                // Guardamos la posición exacta cada medio segundo
                 setInterval(() => {
                     if (this.audio && !this.audio.paused) {
                         localStorage.setItem('music_current_time', this.audio.currentTime);
                     }
                 }, 500);
+            },
+            fadeInAudio() {
+                let targetVolume = 0.2;
+                this.audio.volume = 0.0;
+                let step = 0.001;
+                let intervalTime = 100; // Velocidad del incremento en ms
+
+                let fadeInterval = setInterval(() => {
+                    if (this.audio.volume < targetVolume - step) {
+                        this.audio.volume += step;
+                    } else {
+                        this.audio.volume = targetVolume;
+                        clearInterval(fadeInterval);
+                    }
+                }, intervalTime);
             },
             togglePlay() {
                 if (this.isPlaying) {
@@ -247,11 +258,15 @@
                     this.isPlaying = false;
                     localStorage.setItem('music_is_playing', 'false');
                 } else {
-                    this.fadeInAudio(); // Aplica el fade in también al darle al botón manual
+                    this.audio.play().then(() => {
+                        this.isPlaying = true;
+                        localStorage.setItem('music_is_playing', 'true');
+                        this.fadeInAudio(); // Aplica fade in también al darle clic manual
+                    });
                 }
             }
-        }"
-        class="fixed bottom-6 right-6 z-50">
+         }"
+         class="fixed bottom-6 right-6 z-50">
 
         <audio id="bg-music" loop>
             <source src="{{ asset('audio/cancion.mp3') }}" type="audio/mpeg">
