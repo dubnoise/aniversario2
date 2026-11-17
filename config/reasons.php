@@ -43,37 +43,37 @@ return [
         ],
         [
             'id' => 6,
-            'title' => 'Tu comida favorita compartida',
-            'description' => 'Aunque digas que vas a pedir algo ligero, siempre terminas robándome patatas (y me encanta).',
-            'image' => 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-            'icon' => '🍕'
+            'title' => 'Tu amor por la mañana',
+            'description' => 'Me encanta despertar a tu lado y sentir tu amor desde el primer momento del día.',
+            'image' => asset('images/reasons/manana.jpg'),
+            'icon' => '😴'
         ],
         [
             'id' => 7,
-            'title' => 'Tus abrazos por la mañana',
-            'description' => 'Cinco minutos más a tu lado antes de salir de la cama valen más que diez horas de sueño.',
-            'image' => 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-            'icon' => '🛌'
+            'title' => 'Juegos juntos',
+            'description' => 'Disfruto mucho cuando jugamos durante horas y se nos pasa el tiempo volando.',
+            'image' => asset('images/reasons/juegos.jpg'),
+            'icon' => '🎮'
         ],
         [
             'id' => 8,
-            'title' => 'Tu paciencia conmigo',
-            'description' => 'Gracias por escucharme hablar de mis proyectos o dramas cotidianos como si fuera lo más importante.',
-            'image' => 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+            'title' => 'Tu música favorita',
+            'description' => 'Amo ver como disfrutas de tu música favorita y como me compartes tus canciones preferidas.',
+            'image' => asset('images/reasons/musica.jpg'),
             'icon' => '🎧'
         ],
         [
             'id' => 9,
-            'title' => 'Nuestra complicidad',
-            'description' => 'Esa mirada cruzada en una fiesta que significa "nos vamos ya" sin tener que decir una sola palabra.',
-            'image' => 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-            'icon' => '👀'
+            'title' => 'Tu niña interior',
+            'description' => 'Nunca dejes de mostrar tu lado más tierno, me encanta ver tu niña interior.',
+            'image' => asset('images/reasons/nina.jpg'),
+            'icon' => '👧'
         ],
         [
             'id' => 10,
             'title' => 'Simplemente tú',
             'description' => 'Por ser tal y como eres, por hacerme mejor persona y por construir este camino juntos.',
-            'image' => 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+            'image' => asset('images/reasons/tu.jpg'),
             'icon' => '❤️'
         ],
     ]

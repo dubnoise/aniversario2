@@ -56,6 +56,7 @@ class GiftController extends Controller
 
         $reasons = config('reasons.list');
         $unlockStart = Carbon::parse($request->session()->get('unlock_start', now()));
+        // $unlockStart = Carbon::createFromFormat('Y-m-d H:i:s', '2026-11-29 00:00:00', config('app.timezone'));
 
         // 📅 Fecha de inicio de la relación
         $startDate = Carbon::parse(config('reasons.start_date', '2024-11-29'));
@@ -69,7 +70,7 @@ class GiftController extends Controller
 
         foreach ($reasons as $index => &$reason) {
             // $unlockTime = $unlockStart->copy()->addHours($index * 24);
-            $unlockTime = $unlockStart->copy()->addHours($index * 0.05);
+            $unlockTime = $unlockStart->copy()->addHours($index * 0.01);
             $isUnlocked = $now->greaterThanOrEqualTo($unlockTime);
 
             $reason['unlocked'] = $isUnlocked;
