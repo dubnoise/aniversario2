@@ -12,9 +12,11 @@ RUN apt-get update && apt-get install -y \
 # Copiar Composer desde la imagen oficial
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copiar Node.js para compilar assets (Tailwind/Vite)
-COPY --from=node:22-alpine /usr/local/bin/node /usr/local/bin/node
-COPY --from=node:22-alpine /usr/local/bin/npm /usr/local/bin/npm
+# Copiar Node.js y npm desde una imagen base Debian (compatible con glibc)
+COPY --from=node:22-bookworm-slim /usr/local/bin/node /usr/local/bin/node
+COPY --from=node:22-bookworm-slim /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+    && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 WORKDIR /var/www/html
 
