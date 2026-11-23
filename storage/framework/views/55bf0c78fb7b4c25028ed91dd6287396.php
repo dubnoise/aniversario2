@@ -14,7 +14,7 @@
 
         <span class="text-6xl mb-4 inline-block animate-bounce">💖</span>
 
-        <h1 class="text-3xl md:text-4xl font-extrabold text-rose-600 mb-3">¡Hola, mi amor!</h1>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-rose-600 mb-3">¡Hola! 🥰</h1>
         <p class="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">
             Has entrado en un rincón muy especial creado solo para ti. Un pequeño recordatorio de todo lo que significas para mí.
         </p>
@@ -38,12 +38,12 @@
         <div class="space-y-3">
             <a href="<?php echo e(route('gift.board')); ?>"
                class="block w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5">
-                Ver las 10 razones de mi amor 🎁
+                10 razones de mi amor 🎁
             </a>
 
             <a href="<?php echo e(route('gift.map')); ?>"
             class="block w-full bg-rose-100 hover:bg-rose-200 text-rose-700 font-bold py-3.5 px-6 rounded-2xl shadow transition text-center mb-3">
-                🗺️ Ver nuestros lugares especiales
+                🗺️ Nuestros lugares especiales
             </a>
 
             <a href="<?php echo e(route('gift.safe')); ?>"

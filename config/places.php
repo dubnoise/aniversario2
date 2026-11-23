@@ -8,7 +8,6 @@ return [
             'lng' => -1.13004, // Longitud
             'description' => 'Concierto de Antonio Orozco 🎶',
             'media' => [
-                ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0000.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0001.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0003.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0005.jpg'],
@@ -19,7 +18,6 @@ return [
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0020.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0021.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0024.jpg'],
-                ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0025.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0026.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0029.jpg'],
                 ['type' => 'image', 'url' => 'images/places/murcia/IMG-20261025-WA0031.jpg'],
