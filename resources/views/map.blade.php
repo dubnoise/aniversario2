@@ -238,7 +238,7 @@
                 }, 500);
             },
             fadeInAudio() {
-                let targetVolume = 0.2;
+                let targetVolume = 0.75;
                 this.audio.volume = 0.0;
                 let step = 0.001;
                 let intervalTime = 100; // Velocidad del incremento en ms
